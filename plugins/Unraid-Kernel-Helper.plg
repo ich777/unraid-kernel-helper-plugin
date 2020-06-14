@@ -28,6 +28,10 @@ rm -f $(ls /boot/config/plugins/&name;/&name;*.txz 2>/dev/null|grep -v '&version
 <MD5>&md5;</MD5>
 </FILE>
 
+<FILE Name="/boot/config/plugins/&name;/unraid-kernel.png">
+<LOCAL>/usr/local/emhttp/plugins/&name;/images/unraid-kernel.png</LOCAL>
+</FILE>
+
 <FILE Run="/bin/bash">
 <INLINE>
 echo "-------------------------------------------"
