@@ -29,7 +29,7 @@ rm -f $(ls /boot/config/plugins/&name;/&name;*.txz 2>/dev/null|grep -v '&version
 </FILE>
 
 <FILE Name="/boot/config/plugins/&name;/unraid-kernel.png">
-<LOCAL>/usr/local/emhttp/plugins/&name;/images/unraid-kernel.png</LOCAL>
+<URL>https://raw.githubusercontent.com/ich777/docker-templates/master/ich777/images/unraid-kernel.png</URL>
 </FILE>
 
 <FILE Run="/bin/bash">
