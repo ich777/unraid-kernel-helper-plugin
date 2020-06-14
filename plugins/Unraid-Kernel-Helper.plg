@@ -1,0 +1,52 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN [
+<!ENTITY name      "Unraid-Kernel-Helper">
+<!ENTITY author    "ich777">
+<!ENTITY version   "2020.06.14">
+<!ENTITY md5       "7956ecd1a6c902cfd046be5bd672895d">
+<!ENTITY launch    "Settings/Unraid-Kernel-Helper">
+<!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
+<!ENTITY github    "ich777/unraid-kernel-helper-plugin">
+<!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/master/plugins/&name;.plg">
+]>
+
+<PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.8.3" support="https://forums.unraid.net/topic/92865-support-ich777-nvidiadvb-kernel-helperbuilder-docker/">
+
+<CHANGES>
+###14.06.2020
+Initial Release
+</CHANGES>
+
+<FILE Run="/bin/bash">
+<INLINE>
+rm -f $(ls /boot/config/plugins/&name;/&name;*.txz 2>/dev/null|grep -v '&version;')
+</INLINE>
+</FILE>
+
+<FILE Name="/boot/config/plugins/&name;/&name;-&version;.txz" Run="upgradepkg --install-new">
+<URL>https://raw.github.com/&github;/master/archive/&name;-&version;.txz</URL>
+<MD5>&md5;</MD5>
+</FILE>
+
+<FILE Run="/bin/bash">
+<INLINE>
+echo "-------------------------------------------"
+echo "---Unraid-Kernel-Helper plugin installed---"
+echo "-------------------------------------------"
+</INLINE>
+</FILE>
+
+
+<FILE Run="/bin/bash" Method="remove">
+<INLINE>
+echo "----------------------------------------------"
+echo "---Uninstalling Unraid-Kernel-Helper plugin---"
+echo "----------------------------------------------"
+removepkg &name;-&version;
+rm -rf &plugdir;
+rm -rf /boot/config/plugins/&name;
+echo ""
+echo "Unraid-Kernel-Helper plugin uninstalled."
+</INLINE>
+</FILE>
+</PLUGIN>
