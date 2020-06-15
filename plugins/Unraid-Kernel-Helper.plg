@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "Unraid-Kernel-Helper">
 <!ENTITY author    "ich777">
-<!ENTITY version   "2020.06.14">
-<!ENTITY md5       "7956ecd1a6c902cfd046be5bd672895d">
+<!ENTITY version   "2020.06.15">
+<!ENTITY md5       "c31f28eec8ec49a611dd23cf06d7b683">
 <!ENTITY launch    "Settings/Unraid-Kernel-Helper">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "ich777/unraid-kernel-helper-plugin">
@@ -13,6 +13,10 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.8.3" support="https://forums.unraid.net/topic/92865-support-ich777-nvidiadvb-kernel-helperbuilder-docker/" icon="cogs">
 
 <CHANGES>
+###14.06.2020
+Cleanup UI
+Make DVB Info understandable
+
 ###14.06.2020
 Initial Release
 </CHANGES>
