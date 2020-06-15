@@ -10,3 +10,5 @@ cp --parents -R $BASE_DIR/$PLUGIN_NAME/ $TMP_DIR/$VERSION/
 makepkg -l y -c y $TMP_DIR/$PLUGIN_NAME-$VERSION.txz
 md5sum $TMP_DIR/$PLUGIN_NAME-$VERSION.txz > $TMP_DIR/$PLUGIN_NAME-$VERSION.txz.md5
 rm -R $TMP_DIR/$VERSION/
+
+#rm -R $TMP_DIR
