@@ -116,8 +116,44 @@ Title="Unraid-Kernel-Helper"
 			</tr>
 
 			<tr>
-				<td>Pool List:</td>
-						<td><b><?=`zpool list -o name,size | column -t -o '&nbsp;&nbsp;&nbsp;&nbsp;' | sed 's/$/<br>/'`?></b></td>
+				<td>Pool List:</td><td>
+						<? 
+					$output = `zpool list -o name,size | column -t -o '\t'`;
+					// check for error message
+					if(strpos($output, "available") !== false) {
+					?>
+					<b><?=$output?></b>
+					<?
+					} elseif (strpos($output, "config:") !== false) {
+						// TODO display data for zpool status without any options (?)
+					// parse output table
+					} else {
+						// create array with lines; splits on \n
+						$rows = explode("\n", $output);
+					?>
+						<table>	
+						<?
+						foreach($rows as $row) {
+							// create array with columns from line; splits on \t
+							$columns = explode("\t", $row);
+						?>
+							<tr>
+							<?
+							foreach($columns as $column) {
+							?>
+							<td><?=$column?></td>
+							<?
+							}
+							?>
+							</tr>
+						<?
+						}
+						?>	
+						</table>
+					<?
+						}
+					?></td>
+						
 			</tr>
 
 
