@@ -159,7 +159,7 @@ Title="Unraid-Kernel-Helper"
 
 						
 			<tr>
-					<td style="color:purple"><b><?=`zpool status | grep "errors:" | cut -d ':' -f2`?></b></td>
+					<td><b><?=`zpool status | grep -A 9999 "errors:" | cut -d ':' -f2`?></b></td>
 			</tr>
 
 
