@@ -197,3 +197,29 @@ Title="Unraid-Kernel-Helper"
 
   </table>
 </div>
+
+<div style="width: 50%; float:left">
+	<div id="title">
+		<span class="left"></span>
+	</div>
+    	<table class="settings">
+
+			<tr>
+				<td><b><font size="+1">Mellanox Network Card:</font></b></td>
+			</tr>
+
+			<tr>
+				<td>Temperature:</td>
+						<td style="color:green"><b><?=`mget_temp -d "$(/sbin/lspci -d 15b3: | cut -d ' ' -f1 | head -1)"`?>°C</b></td>
+			</tr>
+
+			<tr>
+				<td>Info:</td>
+						<td style="color:green"><b><?=`mstflint -d 07:00.0 q | tail -n +2 | sed 's/$/<br>/'`?></b></td>
+			</tr>
+
+
+	</table>
+
+
+</div>
