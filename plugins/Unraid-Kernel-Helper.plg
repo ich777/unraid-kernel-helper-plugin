@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "Unraid-Kernel-Helper">
 <!ENTITY author    "ich777">
-<!ENTITY version   "2020.06.20">
-<!ENTITY md5       "093c7607d6a572fb2c0e5db6df8878fa">
+<!ENTITY version   "2020.07.10">
+<!ENTITY md5       "8d15f51c7a891dba4d5226bb1ba77b11">
 <!ENTITY launch    "Settings/Unraid-Kernel-Helper">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "ich777/unraid-kernel-helper-plugin">
@@ -13,6 +13,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.8.3" support="https://forums.unraid.net/topic/92865-support-ich777-nvidiadvb-kernel-helperbuilder-docker/" icon="cogs">
 
 <CHANGES>
+###2020.06.20
+Added additional Mellanox information
+
 ###2020.06.20
 Added additional ZFS information
 
