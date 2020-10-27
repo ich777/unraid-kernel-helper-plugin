@@ -49,7 +49,7 @@ rm -f $(ls /boot/config/plugins/&name;/&name;*.txz 2>/dev/null|grep -v '&version
 <MD5>&md5;</MD5>
 </FILE>
 
-<FILE Name="&emhttp;/README.md">
+<FILE Name="&plugdir;/README.md">
 <INLINE>
 **Unraid-Kernel-Helper**
 
