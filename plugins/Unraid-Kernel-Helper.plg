@@ -2,17 +2,22 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "Unraid-Kernel-Helper">
 <!ENTITY author    "ich777">
-<!ENTITY version   "2020.07.30">
-<!ENTITY md5       "b62eac30a3ddb138a653d1bcef384407">
+<!ENTITY version   "2020.10.27">
+<!ENTITY md5       "14061a8e7d2603f1ef911951d6a975ef">
 <!ENTITY launch    "Settings/Unraid-Kernel-Helper">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "ich777/unraid-kernel-helper-plugin">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/master/plugins/&name;.plg">
 ]>
 
-<PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.8.3" support="https://forums.unraid.net/topic/92865-support-ich777-nvidiadvb-kernel-helperbuilder-docker/" icon="cogs">
+<PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.8.3" support="https://forums.unraid.net/topic/92865-support-ich777-nvidiadvb-kernel-helperbuilder-docker/">
 
 <CHANGES>
+
+###2020.10.27
+Fixed icons
+Code cleanup
+
 ###2020.07.30
 Fixed layout of ZFS informations
 Added additional iSCSI Target information
@@ -30,6 +35,7 @@ Make DVB Info understandable
 
 ###2020.06.14
 Initial Release
+
 </CHANGES>
 
 <FILE Run="/bin/bash">
@@ -41,10 +47,6 @@ rm -f $(ls /boot/config/plugins/&name;/&name;*.txz 2>/dev/null|grep -v '&version
 <FILE Name="/boot/config/plugins/&name;/&name;-&version;.txz" Run="upgradepkg --install-new">
 <URL>https://raw.github.com/&github;/master/archive/&name;-&version;.txz</URL>
 <MD5>&md5;</MD5>
-</FILE>
-
-<FILE Name="/boot/config/plugins/&name;/unraid-kernel.png">
-<URL>https://raw.githubusercontent.com/ich777/docker-templates/master/ich777/images/unraid-kernel.png</URL>
 </FILE>
 
 <FILE Run="/bin/bash">
