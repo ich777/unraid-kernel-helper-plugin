@@ -1,5 +1,6 @@
 Menu="Utilities"
 Title="Unraid-Kernel-Helper"
+Icon="Unraid-Kernel-Helper.png"
 ---
 <h1 style="text-align: center;"><a href="https://forums.unraid.net/topic/92865-support-ich777-nvidiadvb-kernel-helperbuilder-docker/" target="_blank" rel="noopener"><span style="color: #800000;">Unraid-Kernel-Helper Plugin</span></a></h1>
 <p style="text-align: center;">This is the plugin for the Docker Container Unraid-Kernel-Helper.</p>
@@ -19,35 +20,27 @@ Title="Unraid-Kernel-Helper"
 <span><b><?=`dmesg | grep -i dvb | grep -i 'adapter 6' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?></b></span>
 <span><b><?=`dmesg | grep -i dvb | grep -i 'adapter 7' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?></b></span></p>
 
-
 <?
 $nvidiaModule = `modinfo nvidia | grep -w "name:" | cut -d ':' -f2 | tr -d ' '`;
 if (isset($nvidiaModule ) === true && trim($nvidiaModule ) !== ''):
 ?>
 <div style="width: 50%; float:left">
-	<div id="title">
-		<span class="left"></span>
-	</div>
-    	<table class="settings">
-
-			<tr>
-				<td><b><font size="+1">nVidia Info:</font></b></td>
-			</tr>
-
-			<tr>
-				<td>Nvidia Driver Version:</td>
-						<td style="color:green"><b><?=`nvidia-smi | grep "Driver Version" | cut -d ' ' -f3`?></b></td>
-			</tr>
-
-			<tr>
-				<td>Installed GPU(s):</td>
-						<td style="color:green"><b><?=`nvidia-smi --query-gpu=index,name,gpu_bus_id,uuid --format=csv,noheader | tr "," "\n" | sed 's/^[ \t]*//' | sed -e s/00000000://g | sed '0~4G' | sed 's/^[0-9]$/&:/' | sed 's/$/<br>/'
-0:<br>`?></b></td>
-			</tr>
-
-
-	</table>
-
+    <div id="title">
+        <span class="left"></span>
+    </div>
+    <table class="settings">
+        <tr>
+            <td><b><font size="+1">nVidia Info:</font></b></td>
+        </tr>
+        <tr>
+            <td>Nvidia Driver Version:</td>
+            <td style="color:green"><b><?=`nvidia-smi | grep "Driver Version" | cut -d ' ' -f3`?></b></td>
+        </tr>
+        <tr>
+            <td>Installed GPU(s):</td>
+            <td style="color:green"><b><?=`nvidia-smi --query-gpu=index,name,gpu_bus_id,uuid --format=csv,noheader | tr "," "\n" | sed 's/^[ \t]*//' | sed -e s/00000000://g | sed '0~4G' | sed 's/^[0-9]$/&:/' | sed 's/$/<br>/'`?></b></td>
+        </tr>
+    </table>
 </div>
 <? endif; ?>
 
@@ -57,97 +50,93 @@ if (isset($dvbModule ) === true && trim($dvbModule ) !== ''):
 ?>
 
 <div style="width: 50%; float:left">
-	<div id="title">
-		<span class="left"></span>
-	</div>
-    	<table align="right">
-<table class="settings">
+    <div id="title">
+        <span class="left"></span>
+    </div>
+    <table class="settings">
+        <tr>
+            <td><b><font size="+1">DVB Info</font></b></td>
+        </tr>
+        <?
+        $dvbModule0 = `dmesg | grep -i dvb | grep -i 'adapter 0'`;
+        if (isset($dvbModule0 ) === true && trim($dvbModule0 ) !== ''):
+        ?>
+        <tr>
+            <td>Loaded Kernel Module DVB1 & Version:</td>
+            <td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 0' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 0' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
+        </tr>
+        <? endif; ?>
 
-			<tr>
-				<td><b><font size="+1">DVB Info</font></b></td>
-			</tr>
+        <?
+        $dvbModule1 = `dmesg | grep -i dvb | grep -i 'adapter 1'`;
+        if (isset($dvbModule1 ) === true && trim($dvbModule1 ) !== ''):
+        ?>
+        <tr>
+            <td>Loaded Kernel Module DVB2 & Version:</td>
+            <td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 1' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 1' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
+        </tr>
+        <? endif; ?>
 
-			<?
-			$dvbModule0 = `dmesg | grep -i dvb | grep -i 'adapter 0'`;
-			if (isset($dvbModule0 ) === true && trim($dvbModule0 ) !== ''):
-			?>
-				<tr>
-					<td>Loaded Kernel Module DVB1 & Version:</td>
-							<td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 0' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 0' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
-				</tr>
-			<? endif; ?>
+        <?
+        $dvbModule2 = `dmesg | grep -i dvb | grep -i 'adapter 2'`;
+        if (isset($dvbModule2 ) === true && trim($dvbModule2 ) !== ''):
+        ?>
+        <tr>
+            <td>Loaded Kernel Module DVB3 & Version:</td>
+            <td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 2' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 2' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
+        </tr>
+        <? endif; ?>
 
-			<?
-			$dvbModule1 = `dmesg | grep -i dvb | grep -i 'adapter 1'`;
-			if (isset($dvbModule1 ) === true && trim($dvbModule1 ) !== ''):
-			?>
-				<tr>
-					<td>Loaded Kernel Module DVB2 & Version:</td>
-							<td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 1' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 1' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
-				</tr>
-			<? endif; ?>
+        <?
+        $dvbModule3 = `dmesg | grep -i dvb | grep -i 'adapter 3'`;
+        if (isset($dvbModule3 ) === true && trim($dvbModule3 ) !== ''):
+        ?>
+        <tr>
+            <td>Loaded Kernel Module DVB4 & Version:</td>
+            <td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 3' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 3' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
+        </tr>
+        <? endif; ?>
 
-			<?
-			$dvbModule2 = `dmesg | grep -i dvb | grep -i 'adapter 2'`;
-			if (isset($dvbModule2 ) === true && trim($dvbModule2 ) !== ''):
-			?>
-				<tr>
-					<td>Loaded Kernel Module DVB3 & Version:</td>
-							<td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 2' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 2' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
-				</tr>
-			<? endif; ?>
+        <?
+        $dvbModule4 = `dmesg | grep -i dvb | grep -i 'adapter 4'`;
+        if (isset($dvbModule4 ) === true && trim($dvbModule4 ) !== ''):
+        ?>
+        <tr>
+            <td>Loaded Kernel Module DVB5 & Version:</td>
+            <td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 4' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 4' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
+        </tr>
+        <? endif; ?>
 
-			<?
-			$dvbModule3 = `dmesg | grep -i dvb | grep -i 'adapter 3'`;
-			if (isset($dvbModule3 ) === true && trim($dvbModule3 ) !== ''):
-			?>
-				<tr>
-					<td>Loaded Kernel Module DVB4 & Version:</td>
-							<td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 3' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 3' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
-				</tr>
-			<? endif; ?>
+        <?
+        $dvbModule5 = `dmesg | grep -i dvb | grep -i 'adapter 5'`;
+        if (isset($dvbModule5 ) === true && trim($dvbModule5 ) !== ''):
+        ?>
+        <tr>
+            <td>Loaded Kernel Module DVB6 & Version:</td>
+            <td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 5' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 5' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
+        </tr>
+        <? endif; ?>
 
-			<?
-			$dvbModule4 = `dmesg | grep -i dvb | grep -i 'adapter 4'`;
-			if (isset($dvbModule4 ) === true && trim($dvbModule4 ) !== ''):
-			?>
-				<tr>
-					<td>Loaded Kernel Module DVB5 & Version:</td>
-							<td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 4' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 4' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
-				</tr>
-			<? endif; ?>
+        <?
+        $dvbModule6 = `dmesg | grep -i dvb | grep -i 'adapter 6'`;
+        if (isset($dvbModule6 ) === true && trim($dvbModule6 ) !== ''):
+        ?>
+        <tr>
+            <td>Loaded Kernel Module DVB7 & Version:</td>
+            <td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 6' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 6' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
+        </tr>
+        <? endif; ?>
 
-			<?
-			$dvbModule5 = `dmesg | grep -i dvb | grep -i 'adapter 5'`;
-			if (isset($dvbModule5 ) === true && trim($dvbModule5 ) !== ''):
-			?>
-				<tr>
-					<td>Loaded Kernel Module DVB6 & Version:</td>
-							<td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 5' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 5' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
-				</tr>
-			<? endif; ?>
-
-			<?
-			$dvbModule6 = `dmesg | grep -i dvb | grep -i 'adapter 6'`;
-			if (isset($dvbModule6 ) === true && trim($dvbModule6 ) !== ''):
-			?>
-				<tr>
-					<td>Loaded Kernel Module DVB7 & Version:</td>
-							<td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 6' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 6' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
-				</tr>
-			<? endif; ?>
-
-			<?
-			$dvbModule7 = `dmesg | grep -i dvb | grep -i 'adapter 7'`;
-			if (isset($dvbModule7 ) === true && trim($dvbModule7 ) !== ''):
-			?>
-				<tr>
-					<td>Loaded Kernel Module DVB8 & Version:</td>
-							<td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 7' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 7' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
-				</tr>
-			<? endif; ?>
-
-  </table>
+        <?
+        $dvbModule7 = `dmesg | grep -i dvb | grep -i 'adapter 7'`;
+        if (isset($dvbModule7 ) === true && trim($dvbModule7 ) !== ''):
+        ?>
+        <tr>
+            <td>Loaded Kernel Module DVB8 & Version:</td>
+            <td style="color:purple"><b><?=`dmesg | grep -i dvb | grep -i 'adapter 7' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1`?><b> | <?=`modinfo "$(dmesg | grep -i dvb | grep -i 'adapter 7' | cut -d ']' -f2 | cut -d ' ' -f2 | head -1)" | grep "version" | head -1 | cut -d ' ' -f9`?></b></td>
+        </tr>
+        <? endif; ?>
+    </table>
 </div>
 <? endif; ?>
 
@@ -156,67 +145,62 @@ $zfsModule = `modinfo zfs | grep -w "name:" | cut -d ':' -f2 | tr -d ' '`;
 if (isset($zfsModule ) === true && trim($zfsModule ) !== ''):
 ?>
 <div style="width: 50%; float:left">
-	<div id="title">
-		<span class="left"></span>
-	</div>
-    	<table class="settings">
+    <div id="title">
+        <span class="left"></span>
+    </div>
+    <table class="settings">
+    <tr>
+        <td><b><font size="+1">ZFS Info:</font></b></td>
+    </tr>
+    <tr>
+        <td>ZFS Version:</td>
+        <td><b><?=`zfs --version | head -1 | cut -d '-' -f2-`?></b></td>
+    </tr>
+    </table>
+    <span>&nbsp&nbsp&nbspPool List:</span>
+    <table>
+	    <? 
+        $output = `zpool list | column -t -o '\t'`;
+        // check for error message
+        if(strpos($output, "available") !== false) {
+        ?>
+        <b><?=$output?></b>
+        <?
+        } elseif (strpos($output, "config:") !== false) {
+        // TODO display data for zpool status without any options (?)
+        // parse output table
+        } else {
+        // create array with lines; splits on \n
+        $rows = explode("\n", $output);
+        ?>
 
-			<tr>
-				<td><b><font size="+1">ZFS Info:</font></b></td>
+        <?
+        foreach($rows as $row) {
+        // create array with columns from line; splits on \t
+        $columns = explode("\t", $row);
+        ?>
+        <br>
+            <tr>
+                <?
+                foreach($columns as $column) {
+                ?>
+                <td><b><?=$column?></b></td>
+                <?
+                }
+                ?>
+            </tr>
+            <?
+            }
+            ?>	
+
+            <?
+            }
+            ?></td>
 			</tr>
-
-			<tr>
-				<td>ZFS Version:</td>
-						<td><b><?=`zfs --version | head -1 | cut -d '-' -f2-`?></b></td>
-			</tr>
-		</table>
-
-		<span>&nbsp&nbsp&nbspPool List:</span>
-		<table>
-						<? 
-					$output = `zpool list | column -t -o '\t'`;
-					// check for error message
-					if(strpos($output, "available") !== false) {
-					?>
-					<b><?=$output?></b>
-					<?
-					} elseif (strpos($output, "config:") !== false) {
-						// TODO display data for zpool status without any options (?)
-					// parse output table
-					} else {
-						// create array with lines; splits on \n
-						$rows = explode("\n", $output);
-					?>
-
-						<?
-						foreach($rows as $row) {
-							// create array with columns from line; splits on \t
-							$columns = explode("\t", $row);
-						?>
-							<br>
-							<tr>
-							<?
-							foreach($columns as $column) {
-							?>
-							<td><b><?=$column?></b></td>
-							<?
-							}
-							?>
-							</tr>
-						<?
-						}
-						?>	
-
-					<?
-						}
-					?></td>
-			</tr>
-			</table>
-
-			<p>
-					<td><b><?=`zpool status | grep -A 9999 "errors:" | cut -d ':' -f2`?></b></td>
-			</p>
-
+    </table>
+        <p>
+            <td><b><?=`zpool status | grep -A 9999 "errors:" | cut -d ':' -f2`?></b></td>
+        </p>
 </div>
 <? endif; ?>
 
@@ -225,27 +209,22 @@ $mellanoxModule = `ls /usr/bin/mstflint`;
 if (isset($mellanoxModule ) === true && trim($mellanoxModule ) !== ''):
 ?>
 <div style="width: 50%; float:left">
-	<div id="title">
-		<span class="left"></span>
-	</div>
-    	<table class="settings">
-
-			<tr>
-				<td><b><font size="+1">Mellanox Network Card:</font></b></td>
-			</tr>
-
-			<tr>
-				<td>Temperature:</td>
-						<td style="color:green"><b><?=`mget_temp -d "$(/sbin/lspci -d 15b3: | cut -d ' ' -f1 | head -1)"`?>°C</b></td>
-			</tr>
-
-			<tr>
-				<td>Info:</td>
-						<td style="color:green"><b><?=`mstflint -d "$(/sbin/lspci -d 15b3: | cut -d ' ' -f1 | head -1)" q | tail -n +2 | sed 's/$/<br>/'`?></b></td>
-			</tr>
-
-
-	</table>
+    <div id="title">
+        <span class="left"></span>
+    </div>
+    <table class="settings">
+        <tr>
+            <td><b><font size="+1">Mellanox Network Card:</font></b></td>
+        </tr>
+        <tr>
+            <td>Temperature:</td>
+            <td style="color:green"><b><?=`mget_temp -d "$(/sbin/lspci -d 15b3: | cut -d ' ' -f1 | head -1)"`?>°C</b></td>
+        </tr>
+        <tr>
+            <td>Info:</td>
+            <td style="color:green"><b><?=`mstflint -d "$(/sbin/lspci -d 15b3: | cut -d ' ' -f1 | head -1)" q | tail -n +2 | sed 's/$/<br>/'`?></b></td>
+        </tr>
+    </table>
 </div>
 <? endif; ?>
 
@@ -254,50 +233,40 @@ $iSCSIModule = `modinfo configfs | grep -w "name:" | cut -d ':' -f2 | tr -d ' '`
 if (isset($iSCSIModule ) === true && trim($iSCSIModule ) !== ''):
 ?>
 <div style="width: 50%; float:left">
-	<div id="title">
-		<span class="left"></span>
-	</div>
-    	<table class="settings">
-
-			<tr>
-				<td><b><font size="+1">iSCSI Target Info:</font></b></td>
-			</tr>
-			
-			<tr>
-				<td>TargetCLI Version:</td>
-						<td style="color:green"><b><?=`targetcli version 2>&1 | cut -d ' ' -f3`?></b></td>
-			</tr>
-
-	</table>
+    <div id="title">
+        <span class="left"></span>
+    </div>
+    <table class="settings">
+        <tr>
+            <td><b><font size="+1">iSCSI Target Info:</font></b></td>
+        </tr>
+        <tr>
+            <td>TargetCLI Version:</td>
+            <td style="color:green"><b><?=`targetcli version 2>&1 | cut -d ' ' -f3`?></b></td>
+        </tr>
+    </table>
 </div>
 <? endif; ?>
 
 <div style="width: 50%; float:left">
-	<div id="title">
-		<span class="left"></span>
-	</div>
-    	<table align="right">
-<table class="settings">
-
-			<tr>
-				<td><b><font size="+1">System Info</font></b></td>
-			</tr>
-
-			<tr>
-				<td>Unraid Version:</td>
-						<td style="color: #99cc00;"><b><?=`cat /etc/unraid-version | cut -d '"' -f2`?></b></td>
-			</tr>
-
-			<tr>
-				<td>Kernel:</td>
-						<td style="color: #99cc00;"><b><?=`uname -r`?></b></td>
-			</tr>
-
-			<tr>
-				<td>Compile Date:</td>
-						<td style="color: #99cc00;"><b><?=`uname -v | cut -d ' ' -f3-`?></b></td>
-			</tr>
-
-
-  </table>
+    <div id="title">
+        <span class="left"></span>
+    </div>
+    <table class="settings">
+        <tr>
+            <td><b><font size="+1">System Info</font></b></td>
+        </tr>
+        <tr>
+            <td>Unraid Version:</td>
+            <td style="color: #99cc00;"><b><?=`cat /etc/unraid-version | cut -d '"' -f2`?></b></td>
+        </tr>
+        <tr>
+            <td>Kernel:</td>
+            <td style="color: #99cc00;"><b><?=`uname -r`?></b></td>
+        </tr>
+        <tr>
+            <td>Compile Date:</td>
+            <td style="color: #99cc00;"><b><?=`uname -v | cut -d ' ' -f3-`?></b></td>
+        </tr>
+    </table>
 </div>
