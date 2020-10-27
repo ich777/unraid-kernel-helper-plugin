@@ -15,26 +15,26 @@
 <CHANGES>
 
 ###2020.10.27
-Fixed icons
-Code cleanup
+- Fixed icons
+- Code cleanup
 
 ###2020.07.30
-Fixed layout of ZFS informations
-Added additional iSCSI Target information
-Fixed Mellanox information not showing
+- Fixed layout of ZFS informations
+- Added additional iSCSI Target information
+- Fixed Mellanox information not showing
 
 ###2020.06.20
-Added additional Mellanox information
+- Added additional Mellanox information
 
 ###2020.06.20
-Added additional ZFS information
+- Added additional ZFS information
 
 ###2020.06.14
-Cleanup UI
-Make DVB Info understandable
+- Cleanup UI
+- Make DVB Info understandable
 
 ###2020.06.14
-Initial Release
+- Initial Release
 
 </CHANGES>
 
