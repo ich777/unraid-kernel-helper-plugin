@@ -2,9 +2,9 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "Unraid-Kernel-Helper">
 <!ENTITY author    "ich777">
-<!ENTITY version   "2020.10.27">
-<!ENTITY md5       "14061a8e7d2603f1ef911951d6a975ef">
-<!ENTITY launch    "Settings/Unraid-Kernel-Helper">
+<!ENTITY version   "2020.10.28">
+<!ENTITY md5       "868c448ef33a0309df9752a7018d7d0e">
+<!ENTITY launch    "Settings/Unraid-Kernel-Helper-main">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "ich777/unraid-kernel-helper-plugin">
 <!ENTITY pluginURL "https://raw.githubusercontent.com/&github;/master/plugins/&name;.plg">
@@ -13,6 +13,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.8.3" support="https://forums.unraid.net/topic/92865-support-ich777-nvidiadvb-kernel-helperbuilder-docker/">
 
 <CHANGES>
+
+###2020.10.28
+- Added basic GUI for creation/deletion of IQNs,FileIO/Block Volumes, LUNs, ACL's
 
 ###2020.10.27
 - Fixed icons
@@ -55,6 +58,7 @@ rm -f $(ls /boot/config/plugins/&name;/&name;*.txz 2>/dev/null|grep -v '&version
 
 Plugin for Images built with the Docker Container Unraid-Kernel-Helper.
 This Plugin shows all infromation that are available after starting Unraid with the built images.
+It also has now a basic GUI for creation/deletion of IQNs,FileIO/Block Volumes, LUNs, ACL's for iSCSI.
 </INLINE>
 </FILE>
 
