@@ -1,0 +1,92 @@
+Menu="Unraid-Kernel-Helper-main:2"
+Title="iSCSI Overview"
+Cond="exec('modinfo configfs')"
+---
+<script>
+//Don't execute commands again if page is refreshed
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+
+<?php
+//Get available IQNs and BlockVOLs
+$_SESSION['availiqns'] = shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_iqns");
+$_SESSION['availfilios'] = shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_fileio");
+$_SESSION['availblockvols'] = shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_blockvols");
+$_SESSION['availdisks'] = shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh get_available_disks");
+?>
+
+<h1 style="text-align: center;"><span style="color: #800000;">iSCSI Target</span></a></h1>
+<p style="text-align: center;">This Plugin is currently in development and has all the features to create/delete a FileIO Volume/Block Volume and assign it to a Initiator.</p>
+<p style="text-align: center;">The backend itself 'targetcli-fb' is stable and should run without any problems (all commands from 'targetcli-fb' are available from the command line).</p>
+<p style="text-align: center;"><b><i>Manual: First start by going to the first tab and create a IQN and follow the instructions.</i></b></p>
+<p style="text-align: center;"><b><i>Here on this page at the bottom the output of 'targetcli ls' is displayed and you can see all your configurations for iSCSI.</i></b></p>
+
+<?
+$iSCSIModule = `modinfo configfs | grep -w "name:" | cut -d ':' -f2 | tr -d ' '`;
+if (isset($iSCSIModule ) === true && trim($iSCSIModule ) !== ''):
+?>
+<div style="width: 50%; float:left">
+    <div id="title">
+        <span class="left"></span>
+    </div>
+    <table class="settings">
+        <tr>
+            <td><b><font size="+1">iSCSI Target Info:</font></b></td>
+        </tr>
+        <tr>
+        <td>TargetCLI Version:</td>
+            <td style="color:green"><b><?=`targetcli version 2>&1 | cut -d ' ' -f3`?></b></td>
+        </tr>
+    </table>
+
+</div>
+<? else: ?>
+<div style="width: 50%; float:left">
+    <div id="title">
+        <span class="left"></span>
+    </div>
+    <h1 style="text-align: center;"><span>iSCSI Target not found!</span></a></h1>
+</div>
+
+<? endif; ?>
+
+<div style="width: 50%; float:left">
+    <div id="title">
+        <span class="right"></span>
+    </div>
+    <table class="settings">
+        <tr>
+            <td><b><font size="+1">System Info</font></b></td>
+        </tr>
+        <tr>
+            <td>Unraid Version:</td>
+            <td style="color: #99cc00;"><b><?=`cat /etc/unraid-version | cut -d '"' -f2`?></b></td>
+        </tr>
+        <tr>
+            <td>Kernel:</td>
+            <td style="color: #99cc00;"><b><?=`uname -r`?></b></td>
+        </tr>
+        <tr>
+            <td>Compile Date:</td>
+            <td style="color: #99cc00;"><b><?=`uname -v | cut -d ' ' -f3-`?></b></td>
+        </tr>
+    </table>
+</div>
+<div style="width: 100%;">
+    <div id="title">
+        <span></span>
+    </div>
+</div>
+<p style="text-align: center;"><b><font size="+1">Output of 'targetcli ls':</font></b></p>
+<table style="margin-left: auto; margin-right: auto; width: 1050px">
+<tr>
+<td>
+
+<p style="font-family: Monaco, monospace;"><b><?=`targetcli ls | sed 's/$/<br>/'`?></p>
+</td>
+</tr>
+</table>
+
+

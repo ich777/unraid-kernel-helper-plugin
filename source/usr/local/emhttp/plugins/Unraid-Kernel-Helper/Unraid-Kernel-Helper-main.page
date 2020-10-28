@@ -1,0 +1,5 @@
+Menu="Utilities"
+Type="xmenu"
+Title="Unraid-Kernel-Helper"
+Icon="Unraid-Kernel-Helper.png"
+Tabs="true"

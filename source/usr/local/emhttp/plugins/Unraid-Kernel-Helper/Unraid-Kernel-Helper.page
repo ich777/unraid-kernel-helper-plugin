@@ -1,6 +1,5 @@
-Menu="Utilities"
+Menu="Unraid-Kernel-Helper-main:1"
 Title="Unraid-Kernel-Helper"
-Icon="Unraid-Kernel-Helper.png"
 ---
 <h1 style="text-align: center;"><a href="https://forums.unraid.net/topic/92865-support-ich777-nvidiadvb-kernel-helperbuilder-docker/" target="_blank" rel="noopener"><span style="color: #800000;">Unraid-Kernel-Helper Plugin</span></a></h1>
 <p style="text-align: center;">This is the plugin for the Docker Container Unraid-Kernel-Helper.</p>

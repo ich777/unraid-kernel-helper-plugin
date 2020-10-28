@@ -1,0 +1,105 @@
+Menu="Unraid-Kernel-Helper-main:5"
+Title="3 - LUNS"
+Cond="exec('/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_iqns')"
+---
+<p style="text-align: center;"><b>Assign a FileIO Volume/Block Volume to an IQN.</b></p>
+
+<div id="title">
+        <span class="left"></span>
+    </div>
+
+<td><b><font size="+1">Create FileIO LUN:</font></b></td>
+
+<form id="s" method="post" >
+  <select name="availIQN" required>
+    <option selected="selected" value="">Choose IQN</option>
+      <?php
+      $output = $_SESSION['availiqns'];
+      $data = explode("\n", $output);
+      var_dump($data);
+      foreach($data as $item){
+
+      echo "<option value=\"$item\"> $item</option>";
+}
+?>
+</select>
+
+
+<select name="fileioNAME" required>
+    <option selected="selected" value="" >Choose FileIO Volume</option>
+      <?php
+      $output = $_SESSION['availfilios'];
+      $data = explode("\n", $output);
+      var_dump($data);
+      foreach($data as $item){
+
+      echo "<option value=\"$item\"> $item</option>";
+
+}
+?>
+</select>
+</option>
+<input type="submit" name="LUNFileIO" value="Create FileIO LUN">
+</form>
+
+
+<?php
+if(isset($_POST['LUNFileIO'])) {
+$availIQN = $_POST["availIQN"];
+$fileioNAME = $_POST["fileioNAME"];
+shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh create_fileio_lun $availIQN $fileioNAME");
+echo '<script>parent.window.location.reload();</script>';
+}
+?>
+
+
+
+
+
+<div id="title">
+        <span class="left"></span>
+    </div>
+
+<td><b><font size="+1">Create Block LUN:</font></b></td>
+
+<form id="s" method="post" >
+  <select name="availIQN" required>
+    <option selected="selected" value="">Choose IQN</option>
+      <?php
+      $output = $_SESSION['availiqns'];
+      $data = explode("\n", $output);
+      var_dump($data);
+      foreach($data as $item){
+
+      echo "<option value=\"$item\"> $item</option>";
+}
+?>
+</select>
+
+
+<select name="blockNAME" required>
+    <option selected="selected" value="" >Choose Block Volume</option>
+      <?php
+      $output = $_SESSION['availblockvols'];
+      $data = explode("\n", $output);
+      var_dump($data);
+      foreach($data as $item){
+
+      echo "<option value=\"$item\"> $item</option>";
+
+}
+?>
+</select>
+</option>
+<input type="submit" name="LUNblock" value="Create FileIO LUN">
+</form>
+
+
+<?php
+if(isset($_POST['LUNblock'])) {
+$availIQN = $_POST["availIQN"];
+$blockNAME = $_POST["blockNAME"];
+shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh create_block_lun $availIQN $blockNAME");
+echo '<script>parent.window.location.reload();</script>';
+}
+?>

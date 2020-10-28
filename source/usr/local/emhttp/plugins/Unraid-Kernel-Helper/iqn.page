@@ -1,0 +1,63 @@
+Menu="Unraid-Kernel-Helper-main:3"
+Title="1 - IQN"
+Cond="exec('/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_iqns')"
+---
+<?
+if (isset($_SESSION['availiqns'] ) === true && trim($_SESSION['availiqns'] ) !== ''):
+?>
+<p style="text-align: center;"><b>If you need a addational IQN click on the button 'Create new IQN' (you can also create more than one IQN if you want to assign different Initiators to it).</b></p>
+<b>Available IQN's:</b><br>
+<?php
+echo str_replace("\n", '<br>', $_SESSION['availiqns']);
+?>
+<br>
+<?
+else :
+?>
+<p style="text-align: center;"><b>Start by creating an IQN for your server, click on the button 'Create new IQN' (you can also create more than one IQN if you want to assign different Initiators to it).</b></p>
+<? endif; ?>
+
+<form id="iqn" method="post" >
+<input type="submit" name="createIQN" value="Create new IQN">
+</form>
+
+<?php
+if(isset($_POST['createIQN'])) {
+shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh create_iqn");
+echo '<script>parent.window.location.reload();</script>';
+}
+?>
+
+<?
+if (isset($_SESSION['availiqns'] ) === true && trim($_SESSION['availiqns'] ) !== ''):
+?>
+<form id="s" method="post" >
+  <select name="deleteiqn" required>
+    <option selected="selected" value="">Choose IQN</option>
+      <?php
+      $output = $_SESSION['availiqns'];
+      $data = explode("\n", $output);
+      var_dump($data);
+      foreach($data as $item){
+      echo "<option value=\"$item\"> $item</option>";
+    }
+    ?>
+</select>
+<input type="submit" name="deleteIQN" value="Delete">
+</form>
+
+<?php
+if(isset($_POST['deleteIQN'])) {
+$deleteiqn = $_POST["deleteiqn"];
+shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh delete_iqn $deleteiqn");
+echo '<script>parent.window.location.reload();</script>';
+}
+?>
+
+<? endif; ?>
+
+
+
+
+
+

@@ -1,0 +1,86 @@
+Menu="Unraid-Kernel-Helper-main:6"
+Title="4 - ACL"
+Cond="exec('/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_iqns')"
+---
+<p style="text-align: center;"><b>Assagn your Initiator (Client) to the IQN to give them access to the FileIO Volumes/Block Volumes that you assigned in the previous steps.</b></p>
+<div id="title">
+        <span class="left"></span>
+    </div>
+
+<td><b><font size="+1">Create ACL:</font></b></td>
+
+<form id="s" method="post" >
+  <select name="availIQN" required>
+    <option selected="selected" value="">Choose IQN</option>
+      <?php
+      $output = $_SESSION['availiqns'];
+      $data = explode("\n", $output);
+      var_dump($data);
+      foreach($data as $item){
+
+      echo "<option value=\"$item\"> $item</option>";
+}
+?>
+</select>
+
+Enter the Initiatorname here:
+
+
+<input type = "text" style="width: 300px;" name = "aclNAME" placeholder="iqn.9999-00.com.microsoft:desktop-0abcdef" required>
+
+<option>
+<input type="submit" name="createACL" value="Create ACL">
+</option>
+</form>
+
+
+<?php
+if(isset($_POST['createACL'])) {
+$availIQN = $_POST["availIQN"];
+$aclNAME = $_POST["aclNAME"];
+shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh create_acl $availIQN $aclNAME");
+echo '<script>parent.window.location.reload();</script>';
+}
+?>
+
+
+
+<div id="title">
+        <span class="left"></span>
+    </div>
+
+<td><b><font size="+1">Delete ACL:</font></b></td>
+
+<form id="s" method="post" >
+  <select name="availIQN" required>
+    <option selected="selected" value="">Choose IQN</option>
+      <?php
+      $output = $_SESSION['availiqns'];
+      $data = explode("\n", $output);
+      var_dump($data);
+      foreach($data as $item){
+
+      echo "<option value=\"$item\"> $item</option>";
+}
+?>
+</select>
+
+Enter the Initiatorname here:
+
+
+<input type = "text" style="width: 300px;" name = "delaclname" placeholder="iqn.9999-00.com.microsoft:desktop-0abcdef" required>
+
+<option>
+<input type="submit" name="deleteACL" value="Delete ACL">
+</option>
+</form>
+
+
+<?php
+if(isset($_POST['deleteACL'])) {
+$availIQN = $_POST["availIQN"];
+$delaclname = $_POST["delaclname"];
+shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh delete_acl $availIQN $delaclname");
+echo '<script>parent.window.location.reload();</script>';
+}
+?>
