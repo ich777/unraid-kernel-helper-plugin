@@ -1,6 +1,6 @@
 Menu="Unraid-Kernel-Helper-main:3"
 Title="1 - IQN"
-Cond="exec('/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_iqns')"
+Cond="exec('modinfo configfs')"
 ---
 <?
 if (isset($_SESSION['availiqns'] ) === true && trim($_SESSION['availiqns'] ) !== ''):
