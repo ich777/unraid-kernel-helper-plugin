@@ -11,10 +11,10 @@ Cond="exec('modinfo configfs')"
 
 <?php
 //Get available IQNs and BlockVOLs
-$_SESSION['availiqns'] = shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_iqns");
-$_SESSION['availfilios'] = shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_fileio");
-$_SESSION['availblockvols'] = shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_blockvols");
-$_SESSION['availdisks'] = shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh get_available_disks");
+$_SESSION['availiqns'] = shell_exec("/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh avail_iqns");
+$_SESSION['availfilios'] = shell_exec("/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh avail_fileio");
+$_SESSION['availblockvols'] = shell_exec("/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh avail_blockvols");
+$_SESSION['availdisks'] = shell_exec("/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh get_available_disks");
 ?>
 
 <h1 style="text-align: center;"><span style="color: #800000;">iSCSI Target</span></a></h1>

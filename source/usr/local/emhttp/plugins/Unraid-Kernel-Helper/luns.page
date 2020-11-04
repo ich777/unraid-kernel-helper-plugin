@@ -1,6 +1,6 @@
 Menu="Unraid-Kernel-Helper-main:5"
 Title="3 - LUNS"
-Cond="exec('/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_iqns')"
+Cond="exec('/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh avail_iqns')"
 ---
 <p style="text-align: center;"><b>Assign a FileIO Volume/Block Volume to an IQN.</b></p>
 
@@ -47,7 +47,7 @@ Cond="exec('/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_iqns')"
 if(isset($_POST['LUNFileIO'])) {
 $availIQN = $_POST["availIQN"];
 $fileioNAME = $_POST["fileioNAME"];
-shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh create_fileio_lun $availIQN $fileioNAME");
+shell_exec("/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh create_fileio_lun $availIQN $fileioNAME");
 echo '<script>parent.window.location.reload();</script>';
 }
 ?>
@@ -99,7 +99,7 @@ echo '<script>parent.window.location.reload();</script>';
 if(isset($_POST['LUNblock'])) {
 $availIQN = $_POST["availIQN"];
 $blockNAME = $_POST["blockNAME"];
-shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh create_block_lun $availIQN $blockNAME");
+shell_exec("/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh create_block_lun $availIQN $blockNAME");
 echo '<script>parent.window.location.reload();</script>';
 }
 ?>

@@ -1,6 +1,6 @@
 Menu="Unraid-Kernel-Helper-main:4"
 Title="2 - Volumes"
-Cond="exec('/usr/local/emhttp/plugins/iscsi/include/exec.sh avail_iqns')"
+Cond="exec('/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh avail_iqns')"
 ---
 <link type="text/css" rel="stylesheet" href="<?autov("/webGui/styles/jquery.filetree.css")?>">
 <script src="<?=autov("/webGui/javascript/jquery.filetree.js")?>"></script>
@@ -36,7 +36,7 @@ function path_selected() {
 <tr style="height:20px;">
     <td>
         <input id="pathfromjs" name="pathfromjs" type="hidden"></input>
-        <input type='text' size="15" class='setting' id="destinationShare" placeholder="/mnt/user/iSCSI/" name="shareFolder" data-pickroot="/mnt" data-pickfilter="HIDE_FILES_FILTER" data-pickfolders="true" onchange="path_selected()" required>
+        <input type='text' size="15" class='setting' id="destinationShare" placeholder="/mnt/user/Unraid-Kernel-Helper/" name="shareFolder" data-pickroot="/mnt" data-pickfilter="HIDE_FILES_FILTER" data-pickfolders="true" onchange="path_selected()" required>
     </td>
     <td><input type = "text" style="width: 100px;" name = "name" placeholder="fileIO" required> .img</td>
     <td> <input type = "text" name = "size" placeholder="20G" required></td>
@@ -59,7 +59,7 @@ $size = $_POST["size"];
 $name = $_POST["name"];
 $path = $_POST["pathfromjs"];
 $writeback = $_POST["write_back"];
-shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh create_fileIO $name $path $size $writeback");
+shell_exec("/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh create_fileIO $name $path $size $writeback");
 echo '<script>parent.window.location.reload();</script>';
 }
 ?>
@@ -92,7 +92,7 @@ echo str_replace("\n", '<br>', $_SESSION['availfilios']);
 <?php
 if(isset($_POST['deleteFileIO'])) {
 $deletefileio = $_POST["deletefileio"];
-shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh delete_fileIO $deletefileio");
+shell_exec("/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh delete_fileIO $deletefileio");
 echo '<script>parent.window.location.reload();</script>';
 }
 ?>
@@ -134,7 +134,7 @@ echo '<script>parent.window.location.reload();</script>';
 if(isset($_POST['createBlock'])) {
 $disk = $_POST["disk"];
 $name = $_POST["name"];
-shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh create_blockvol $disk $name");
+shell_exec("/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh create_blockvol $disk $name");
 echo '<script>parent.window.location.reload();</script>';
 }
 ?>
@@ -167,7 +167,7 @@ echo str_replace("\n", '<br>', $_SESSION['availblockvols']);
 <?php
 if(isset($_POST['deleteBlockVOL'])) {
 $deleteblockvol = $_POST["deleteblockvol"];
-shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh delete_blockVOL $deleteblockvol");
+shell_exec("/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh delete_blockVOL $deleteblockvol");
 echo '<script>parent.window.location.reload();</script>';
 }
 ?>

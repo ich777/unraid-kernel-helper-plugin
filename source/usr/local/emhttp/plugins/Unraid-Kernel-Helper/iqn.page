@@ -23,7 +23,7 @@ else :
 
 <?php
 if(isset($_POST['createIQN'])) {
-shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh create_iqn");
+shell_exec("/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh create_iqn");
 echo '<script>parent.window.location.reload();</script>';
 }
 ?>
@@ -49,7 +49,7 @@ if (isset($_SESSION['availiqns'] ) === true && trim($_SESSION['availiqns'] ) !==
 <?php
 if(isset($_POST['deleteIQN'])) {
 $deleteiqn = $_POST["deleteiqn"];
-shell_exec("/usr/local/emhttp/plugins/iscsi/include/exec.sh delete_iqn $deleteiqn");
+shell_exec("/usr/local/emhttp/plugins/Unraid-Kernel-Helper/include/exec.sh delete_iqn $deleteiqn");
 echo '<script>parent.window.location.reload();</script>';
 }
 ?>
