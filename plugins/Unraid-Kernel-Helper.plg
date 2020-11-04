@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "Unraid-Kernel-Helper">
 <!ENTITY author    "ich777">
-<!ENTITY version   "2020.10.28">
-<!ENTITY md5       "b11f45dc66148de51838230e89dd34fd">
+<!ENTITY version   "2020.11.04">
+<!ENTITY md5       "e7e7b50497639773684c89fb6c4c1bc0">
 <!ENTITY launch    "Settings/Unraid-Kernel-Helper-main">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "ich777/unraid-kernel-helper-plugin">
@@ -13,6 +13,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.8.3" support="https://forums.unraid.net/topic/92865-support-ich777-nvidiadvb-kernel-helperbuilder-docker/">
 
 <CHANGES>
+
+###2020.11.04
+- Fixed a bug where IQN's don't show up if no IQN is created.
 
 ###2020.10.28
 - Added basic GUI for creation/deletion of IQNs,FileIO/Block Volumes, LUNs, ACL's
