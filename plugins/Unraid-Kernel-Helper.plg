@@ -3,7 +3,7 @@
 <!ENTITY name      "Unraid-Kernel-Helper">
 <!ENTITY author    "ich777">
 <!ENTITY version   "2020.11.04">
-<!ENTITY md5       "e7e7b50497639773684c89fb6c4c1bc0">
+<!ENTITY md5       "0b911c3d85f38157d078accfce84dd63">
 <!ENTITY launch    "Settings/Unraid-Kernel-Helper-main">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "ich777/unraid-kernel-helper-plugin">
