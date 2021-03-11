@@ -3,7 +3,7 @@
 <!ENTITY name      "Unraid-Kernel-Helper">
 <!ENTITY author    "ich777">
 <!ENTITY version   "2021.01.04a">
-<!ENTITY md5       "dd1cde9621aff4b05cbacbcf540e8f07">
+<!ENTITY md5       "90a219274d8b834d96121a5fb563add1">
 <!ENTITY launch    "Settings/Unraid-Kernel-Helper-main">
 <!ENTITY plugdir   "/usr/local/emhttp/plugins/&name;">
 <!ENTITY github    "ich777/unraid-kernel-helper-plugin">
@@ -13,6 +13,9 @@
 <PLUGIN name="&name;" author="&author;" version="&version;" launch="&launch;" pluginURL="&pluginURL;" min="6.8.3" support="https://forums.unraid.net/topic/92865-support-ich777-nvidiadvb-kernel-helperbuilder-docker/">
 
 <CHANGES>
+
+###2021.03.11
+- Fixed permission issue
 
 ###2021.01.04
 - Fixed a bug where the buttons on the iSCSI Volumes and ACL page are not displayed on Chrome, Edge,...
